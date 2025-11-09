@@ -1,199 +1,211 @@
-# Sistema de Gestión de Restaurante "Sabor Gourmet"
 
-Sistema desarrollado con Spring Boot 3.2.0, implementando AOP (Programación Orientada a Aspectos) para auditoría y Spring Security para la gestión de autenticación y autorización.
+---
 
-## Características Principales
+# 🍽️ Sistema de Gestión de Restaurante — *Sabor Gourmet*
 
-- ✅ Spring Boot 3.2.0 con arquitectura MVC
-- ✅ Spring Data JPA con MySQL
-- ✅ Spring Security con roles (ADMIN, MOZO, COCINERO, CAJERO)
-- ✅ AOP para auditoría automática de operaciones CRUD
-- ✅ Thymeleaf para vistas
-- ✅ Bootstrap 5 para diseño responsive
+Aplicación web desarrollada con **Spring Boot 3.2.0**, diseñada para optimizar la gestión operativa de restaurantes.
+Incluye módulos de pedidos, facturación, inventario, usuarios y auditoría, implementando **AOP** para el registro automático de acciones y **Spring Security** para autenticación y control de accesos.
 
-## Requisitos Previos
+---
 
-- Java 17 o superior
-- Maven 3.6+
-- MySQL 8.0+
-- IDE (IntelliJ IDEA, Eclipse, VS Code)
+## 🚀 Tecnologías Clave
 
-## Configuración de la Base de Datos
+* **Spring Boot 3.2.0** — Framework principal
+* **Spring Data JPA + MySQL** — Persistencia de datos
+* **Spring Security** — Control de autenticación y roles
+* **AOP (Aspect-Oriented Programming)** — Auditoría automática
+* **Thymeleaf + Bootstrap 5** — Interfaz web moderna y adaptable
+* **BCrypt** — Cifrado de contraseñas
 
-1. Crear la base de datos en MySQL:
+---
+
+## ⚙️ Requisitos Previos
+
+| Herramienta | Versión mínima                    |
+| ----------- | --------------------------------- |
+| Java        | 17                                |
+| Maven       | 3.6                               |
+| MySQL       | 8.0                               |
+| IDE         | IntelliJ IDEA / Eclipse / VS Code |
+
+---
+
+## 🧩 Configuración Inicial
+
+### 1️⃣ Crear base de datos
+
 ```sql
 CREATE DATABASE sabor_gourmet CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-2. Configurar las credenciales en `src/main/resources/application.properties`:
+### 2️⃣ Editar credenciales en `application.properties`
+
 ```properties
 spring.datasource.username=root
 spring.datasource.password=tu_password
 ```
 
-## Instalación y Ejecución
+---
 
-1. Clonar o descargar el proyecto
+## ▶️ Ejecución del Proyecto
 
-2. Configurar la base de datos MySQL en `application.properties`
+1. Clona o descarga el repositorio
+2. Configura la conexión MySQL
+3. Ejecuta el proyecto:
 
-3. Ejecutar el proyecto:
 ```bash
 mvn spring-boot:run
 ```
 
-O desde el IDE ejecutar la clase `SaborGourmetApplication.java`
+O bien, desde tu IDE ejecuta la clase principal:
 
-4. Acceder a la aplicación:
+```java
+SaborGourmetApplication.java
 ```
-http://localhost:8080
-```
 
-## Usuarios por Defecto
+4. Accede en tu navegador a:
+   👉 [http://localhost:8080](http://localhost:8080)
 
-El sistema crea automáticamente los siguientes usuarios al iniciar:
+---
 
-| Usuario   | Contraseña   | Rol      |
-|-----------|--------------|----------|
-| admin     | admin123     | ADMIN    |
-| mozo      | mozo123      | MOZO     |
-| cajero    | cajero123    | CAJERO   |
-| cocinero  | cocinero123  | COCINERO |
+## 👥 Usuarios por Defecto
 
-## Estructura del Proyecto
+| Usuario  | Contraseña  | Rol      |
+| -------- | ----------- | -------- |
+| admin    | admin123    | ADMIN    |
+| mozo     | mozo123     | MOZO     |
+| cajero   | cajero123   | CAJERO   |
+| cocinero | cocinero123 | COCINERO |
+
+---
+
+## 🧱 Estructura del Proyecto
 
 ```
 src/main/java/pe/edu/uni/saborgourmet/
-├── aspect/          # Aspectos AOP (Auditoría)
-├── config/          # Configuraciones (Security, Data Initializer)
-├── controller/      # Controladores MVC
-├── entity/          # Entidades JPA
-├── repository/      # Repositorios Spring Data JPA
-└── service/         # Servicios de negocio
+├── aspect/        → Auditoría AOP
+├── config/        → Configuraciones (seguridad, inicialización)
+├── controller/    → Controladores MVC
+├── entity/        → Entidades JPA
+├── repository/    → Repositorios de datos
+└── service/       → Lógica de negocio
 
 src/main/resources/
-├── templates/       # Vistas Thymeleaf
+├── templates/     → Vistas Thymeleaf
 └── application.properties
 ```
 
-## Roles y Permisos
+---
 
-### ADMIN
-- Acceso completo al sistema
-- Gestión de clientes, mesas, platos, usuarios
-- Acceso a inventario
+## 🔐 Roles y Permisos
 
-### MOZO
-- Gestión de pedidos
-- Consulta de mesas
+| Rol          | Permisos principales                               |
+| ------------ | -------------------------------------------------- |
+| **ADMIN**    | Control total: usuarios, mesas, platos, inventario |
+| **MOZO**     | Gestión de pedidos y mesas                         |
+| **COCINERO** | Visualización y actualización de pedidos en cocina |
+| **CAJERO**   | Ventas, facturación y pagos                        |
 
-### COCINERO
-- Visualización de pedidos en cocina
-- Cambio de estado de pedidos
+---
 
-### CAJERO
-- Gestión de ventas
-- Generación de facturas
-- Registro de pagos
+## 📦 Módulos del Sistema
 
-## Módulos del Sistema
+### 🧑‍🤝‍🧑 Clientes y Mesas
 
-### 1. Módulo de Clientes y Mesas
-- Registro y consulta de clientes
-- Gestión de mesas (disponible, ocupada, reservada, mantenimiento)
+* Registro de clientes
+* Control del estado de mesas (disponible, ocupada, reservada)
 
-### 2. Módulo de Menú y Platos
-- Registro de platos y bebidas
-- Asociación de insumos a platos
-- Control de precios
+### 🍽️ Menú y Platos
 
-### 3. Módulo de Pedidos
-- Registro de pedidos
-- Gestión de estados (pendiente, en preparación, servido, cerrado)
-- Vista de cocina
+* Alta y edición de platos y bebidas
+* Asociación de insumos y control de precios
 
-### 4. Módulo de Ventas y Facturación
-- Generación automática de facturas
-- Registro de métodos de pago (efectivo, tarjeta, yape)
-- Control de pagos
+### 🧾 Pedidos
 
-### 5. Módulo de Inventario
-- Gestión de insumos
-- Control de stock
-- Alertas de stock bajo
+* Registro, seguimiento y actualización de pedidos
+* Estados: *pendiente*, *en preparación*, *servido*, *cerrado*
 
-### 6. Módulo de Administración y Seguridad
-- Gestión de usuarios y roles
-- Bitácora de auditoría (registro automático de acciones)
+### 💵 Ventas y Facturación
 
-## Auditoría con AOP
+* Facturas automáticas
+* Pagos con efectivo, tarjeta o Yape
 
-El sistema registra automáticamente en la tabla `bitacora` todas las operaciones de:
-- **CREAR**: Cuando se crea un nuevo registro
-- **ACTUALIZAR**: Cuando se modifica un registro existente
-- **ELIMINAR**: Cuando se elimina un registro
+### 📦 Inventario
 
-El aspecto `AuditoriaAspect` intercepta los métodos de los servicios y registra:
-- Usuario que realizó la acción
-- Tabla afectada
-- ID del registro
-- Tipo de acción
-- Fecha y hora
+* Gestión y control de stock
+* Alertas de insumos bajos
 
-## Tecnologías Utilizadas
+### 🛡️ Administración y Seguridad
 
-- **Spring Boot 3.2.0**
-- **Spring Security**: Autenticación y autorización
-- **Spring Data JPA**: Persistencia de datos
-- **Spring AOP**: Programación orientada a aspectos
-- **MySQL**: Base de datos
-- **Thymeleaf**: Motor de plantillas
-- **Bootstrap 5**: Framework CSS
-- **BCrypt**: Cifrado de contraseñas
+* Gestión de usuarios y roles
+* Bitácora de acciones con AOP
 
-## Desarrollo
+---
 
-### Compilar el proyecto
+## 🕵️‍♂️ Auditoría con AOP
+
+El sistema registra cada operación CRUD en la tabla `bitacora`, indicando:
+
+* Usuario que ejecutó la acción
+* Entidad afectada
+* ID del registro
+* Tipo de acción (CREAR, ACTUALIZAR, ELIMINAR)
+* Fecha y hora
+
+El componente `AuditoriaAspect` intercepta automáticamente los métodos de los servicios para mantener un historial completo.
+
+---
+
+## 🧰 Comandos Útiles
+
+### Compilar:
+
 ```bash
 mvn clean install
 ```
 
-### Ejecutar tests
+### Ejecutar pruebas:
+
 ```bash
 mvn test
 ```
 
-### Empaquetar para producción
+### Empaquetar (JAR):
+
 ```bash
 mvn clean package
 ```
 
-El archivo JAR se generará en `target/sabor-gourmet-1.0.0.jar`
+### Ejecutar en producción:
 
-### Ejecutar JAR
 ```bash
 java -jar target/sabor-gourmet-1.0.0.jar
 ```
 
-## Despliegue
+---
 
-1. Configurar variables de entorno o `application.properties` para producción
-2. Actualizar credenciales de base de datos
-3. Compilar el proyecto: `mvn clean package`
-4. Ejecutar el JAR generado
+## ☁️ Despliegue
 
-## Notas Importantes
+1. Ajusta las variables de entorno o `application.properties`
+2. Actualiza las credenciales de la base de datos
+3. Empaqueta con `mvn clean package`
+4. Ejecuta el archivo `.jar` generado
 
-- Las contraseñas se almacenan cifradas con BCrypt
-- Todas las acciones CRUD se registran automáticamente en la bitácora
-- El sistema requiere autenticación para todas las rutas excepto `/login`
-- Los roles determinan el acceso a las diferentes funcionalidades
+---
 
-## Autor
+## ⚠️ Notas Importantes
 
-Desarrollado para el curso de Desarrollo de Aplicaciones Web - Ciclo IV
+* Contraseñas cifradas con **BCrypt**
+* Todas las acciones CRUD quedan registradas en la **bitácora**
+* El acceso está protegido mediante **autenticación obligatoria**
+* Cada **rol** controla las vistas y acciones disponibles
 
-## Licencia
+---
 
-Este proyecto es de uso educativo.
+## 👨‍💻 Autor
+
+Desarrollado para el curso **Desarrollo de Aplicaciones Web – Ciclo IV**
+**Proyecto educativo — Uso no comercial**
+
+---
 
