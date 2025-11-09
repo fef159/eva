@@ -1,0 +1,58 @@
+/* Esquema de colores marrón elegante para Sabor Gourmet */
+
+:root {
+    --marron-oscuro: #6F4E37;
+    --marron-medio: #8B6F47;
+    --marron-claro: #A0826D;
+    --marron-muy-claro: #D4C4B0;
+    --beige: #F5F1EB;
+    --dorado: #C9A961;
+    --marron-hover: #5A3D2A;
+}
+
+/* Navbar */
+.navbar-marron {
+    background-color: var(--marron-oscuro) !important;
+}
+
+/* Botones */
+.btn-marron {
+    background-color: var(--marron-oscuro);
+    border-color: var(--marron-oscuro);
+    color: white;
+}
+
+.btn-marron:hover {
+    background-color: var(--marron-hover);
+    border-color: var(--marron-hover);
+    color: white;
+}
+
+.btn-outline-marron {
+    border-color: var(--marron-oscuro);
+    color: var(--marron-oscuro);
+}
+
+.btn-outline-marron:hover {
+    background-color: var(--marron-oscuro);
+    border-color: var(--marron-oscuro);
+    color: white;
+}
+
+/* Cards */
+.card-marron {
+    background-color: var(--beige);
+    border: 1px solid var(--marron-muy-claro);
+}
+
+/* Texto */
+.text-marron {
+    color: var(--marron-oscuro) !important;
+}
+
+/* Badges */
+.badge-marron {
+    background-color: var(--marron-oscuro);
+    color: white;
+}
+
